@@ -4,7 +4,7 @@ body {
 
 #container {
     background: lightgray;
-    width: 900px;
+    width: 1000px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 30px;
@@ -12,12 +12,15 @@ body {
     border-radius: 15px;
 }
 
+#container div {
+    text-align: center;
+}
+
 #selectionForm {
     border-radius: 15px;
     background: white;
     padding-top: 25px;
     padding-bottom: 13px;
-    text-align: center;
 }
 
 #submitButton {
@@ -30,5 +33,10 @@ body {
 }
 #submitButton:hover {
     background: #e0e0e0;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 10px auto;
 }
 

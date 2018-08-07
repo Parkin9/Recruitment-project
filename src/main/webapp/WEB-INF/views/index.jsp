@@ -12,7 +12,7 @@
         <div id="selectionForm">
             <form method="post">
                 <label>Wybierz kolumnę:
-                    <select id="columnNumber">
+                    <select id="columnName">
                         <option value="kolumna1">Kolumna 1.</option>
                         <option value="kolumna2">Kolumna 2.</option>
                         <option value="kolumna3">Kolumna 3.</option>
@@ -22,9 +22,10 @@
                 <button id="submitButton">Wyślij</button>
             </form>
         </div>
-        <div id="resultDisplay">
-            <%--@elvariable id="model" type="pl.parkin9.recruitment_project.Service.RecordsCollectionService"--%>
-            <c:out value="${model}"/>
+        <div>
+            <table id="displayResult1"></table>
+            <hr/>
+            <table id="displayResult2"></table>
         </div>
     </div>
 </body>

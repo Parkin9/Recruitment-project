@@ -6,9 +6,7 @@ import pl.parkin9.recruitment_project.Model.RecordFromTable;
 import pl.parkin9.recruitment_project.Repository.RecordFromTableRepository;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class RecordsCollectionServiceImpl implements RecordsCollectionService {
@@ -17,24 +15,21 @@ public class RecordsCollectionServiceImpl implements RecordsCollectionService {
 
     @Autowired
     public RecordsCollectionServiceImpl(RecordFromTableRepository recordFromTableRepository) {
-
         this.recordFromTableRepository = recordFromTableRepository;
     }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-    public Map<String, List<RecordFromTable>> buildMap(String columnNumber) {
+    public List<List<RecordFromTable>> buildRecordsList(String columnNumber) {
 
-        List<RecordFromTable> recordsWithDuplicates = new ArrayList<>(recordFromTableRepository
-                                                                    .findAllRecordsWithDuplicatedValues(columnNumber));
+        List<RecordFromTable> duplicatesList = new ArrayList<>(recordFromTableRepository.findAllRecordsWithDuplicatedValues(columnNumber));
+        List<RecordFromTable> singlesList = new ArrayList<>(recordFromTableRepository.findAllRecordsWithSingledValues(columnNumber));
 
-        List<RecordFromTable> recordsWithSingles = new ArrayList<>(recordFromTableRepository
-                                                                    .findAllRecordsWithSingledValues(columnNumber));
+        List<List<RecordFromTable>> recordsList = new ArrayList<>();
+        recordsList.add(duplicatesList);
+        recordsList.add(singlesList);
 
-        Map<String, List<RecordFromTable>> recordsMap = new HashMap<>();
-        recordsMap.put("recordsWithDuplicates", recordsWithDuplicates);
-        recordsMap.put("recoredsWithSingles", recordsWithSingles);
-
-        return recordsMap;
+        return recordsList;
     }
+
 }

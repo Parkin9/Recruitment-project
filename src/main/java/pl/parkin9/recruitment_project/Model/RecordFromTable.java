@@ -23,11 +23,7 @@ public class RecordFromTable {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public RecordFromTable(String valueColumn1, String valueColumn2, String valueColumn3, Long valueColumn4) {
-        this.valueColumn1 = valueColumn1;
-        this.valueColumn2 = valueColumn2;
-        this.valueColumn3 = valueColumn3;
-        this.valueColumn4 = valueColumn4;
+    public RecordFromTable() {
     }
 
     public Long getId() {

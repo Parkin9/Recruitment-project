@@ -22,8 +22,8 @@ public class RecordsCollectionServiceImpl implements RecordsCollectionService {
 
     public List<List<RecordFromTable>> buildRecordsList(String columnNumber) {
 
-        List<RecordFromTable> duplicatesList = new ArrayList<>(recordFromTableRepository.findAllRecordsWithDuplicatedValues(columnNumber));
-        List<RecordFromTable> singlesList = new ArrayList<>(recordFromTableRepository.findAllRecordsWithSingledValues(columnNumber));
+        List<RecordFromTable> duplicatesList = recordFromTableRepository.findAllRecordsWithDuplicatedValues(columnNumber);
+        List<RecordFromTable> singlesList = recordFromTableRepository.findAllRecordsWithSingledValues(columnNumber);
 
         List<List<RecordFromTable>> recordsList = new ArrayList<>();
         recordsList.add(duplicatesList);

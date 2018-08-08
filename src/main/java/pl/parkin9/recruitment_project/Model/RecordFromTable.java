@@ -2,7 +2,8 @@ package pl.parkin9.recruitment_project.Model;
 
 import javax.persistence.*;
 
-@Entity(name = "tabela_testowa")
+@Entity
+@Table(name = "tabela_testowa")
 public class RecordFromTable {
 
     @Id

@@ -23,8 +23,10 @@
             </form>
         </div>
         <div>
+            <p id="tableHeader1"></p>
             <table id="displayResult1"></table>
-            <hr/>
+            <br/>
+            <p id="tableHeader2"></p>
             <table id="displayResult2"></table>
         </div>
     </div>

@@ -4,7 +4,7 @@ import pl.parkin9.recruitment_project.Model.RecordFromTable;
 
 import java.util.List;
 
-public interface RecordsCollectionService {
+public interface CastRecordsService {
 
-    List<List<RecordFromTable>> buildRecordsList(String columnNumber);
+    List<RecordFromTable> castRecords(List rawRecordsList);
 }

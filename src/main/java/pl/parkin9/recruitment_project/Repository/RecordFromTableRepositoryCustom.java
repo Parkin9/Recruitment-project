@@ -2,6 +2,7 @@ package pl.parkin9.recruitment_project.Repository;
 
 import pl.parkin9.recruitment_project.Model.RecordFromTable;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface RecordFromTableRepositoryCustom {

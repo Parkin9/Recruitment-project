@@ -14,36 +14,48 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 // console.log(recordsList);
 
-                var rawDuplicatesList = recordsList[0];
-                var rawSinglesList = recordsList[1];
+                var duplicatesList = recordsList[0];
+                var singlesList = recordsList[1];
 
-                var readyDuplicates = '';
-                var readySingles = '';
+                var readyToDisplayDuplicates = '<tr><th class="valueTable">ID:</th>' +
+                                                '<th class="valueTable">Kolumna 1.</th>' +
+                                                '<th class="valueTable">Kolumna 2.</th>' +
+                                                '<th class="valueTable">Kolumna 3.</th>' +
+                                                '<th class="valueTable">Kolumna 4.</th></tr>';
 
-                // console.log(rawDuplicatesList);
-                // console.log(rawSinglesList);
+                var readyToDisplaySingles = '<tr><th class="valueTable">ID:</th>' +
+                                            '<th class="valueTable">Kolumna 1.</th>' +
+                                            '<th class="valueTable">Kolumna 2.</th>' +
+                                            '<th class="valueTable">Kolumna 3.</th>' +
+                                            '<th class="valueTable">Kolumna 4.</th></tr>';
 
-                for(var i = 0; i < rawDuplicatesList.length; i++) {
+                // console.log(duplicatesList);
+                // console.log(singlesList);
 
-                    readyDuplicates += '<tr><td>' + rawDuplicatesList[i].id + '</td>' +
-                                            '<td>' + rawDuplicatesList[i].valueColumn1 + '</td>' +
-                                            '<td>' + rawDuplicatesList[i].valueColumn2 + '</td>' +
-                                            '<td>' + rawDuplicatesList[i].valueColumn3 + '</td>' +
-                                            '<td>' + rawDuplicatesList[i].valueColumn4 + '</td>' + '</td></tr>';
+                for(var i = 0; i < duplicatesList.length; i++) {
+
+                    readyToDisplayDuplicates += '<tr><td class="valueTable">' + duplicatesList[i].id + '</td>' +
+                                                '<td class="valueTable">' + duplicatesList[i].valueColumn1 + '</td>' +
+                                                '<td class="valueTable">' + duplicatesList[i].valueColumn2 + '</td>' +
+                                                '<td class="valueTable">' + duplicatesList[i].valueColumn3 + '</td>' +
+                                                '<td class="valueTable">' + duplicatesList[i].valueColumn4 + '</td></tr>';
                 }
 
-                for(var i = 0; i < rawSinglesList.length; i++) {
+                for(var i = 0; i < singlesList.length; i++) {
 
-                    readySingles += '<tr><td>' + rawSinglesList[i].id + '</td>' +
-                                            '<td>' + rawSinglesList[i].valueColumn1 + '</td>' +
-                                            '<td>' + rawSinglesList[i].valueColumn2 + '</td>' +
-                                            '<td>' + rawSinglesList[i].valueColumn3 + '</td>' +
-                                            '<td>' + rawSinglesList[i].valueColumn4 + '</td>' + '</td></tr>';
+                    readyToDisplaySingles += '<tr><td class="valueTable">' + singlesList[i].id + '</td>' +
+                                                '<td class="valueTable">' + singlesList[i].valueColumn1 + '</td>' +
+                                                '<td class="valueTable">' + singlesList[i].valueColumn2 + '</td>' +
+                                                '<td class="valueTable">' + singlesList[i].valueColumn3 + '</td>' +
+                                                '<td class="valueTable">' + singlesList[i].valueColumn4 + '</td></tr>';
                 }
 
-                $('#displayResult1').html(readyDuplicates);
-                $('#displayResult2').html(readySingles);
-                $('td').css("border", "2px solid black").css("padding", "5px");
+                $('#tableHeader1').html('<b>WARTOŚCI ZDUPLIKOWANE</b>');
+                $('#tableHeader2').html('<b>WARTOŚCI UNIKATOWE</b>');
+
+                $('#displayResult1').html(readyToDisplayDuplicates);
+                $('#displayResult2').html(readyToDisplaySingles);
+                $('.valueTable').css("border", "1px solid black").css("padding", "5px");
             }
         });
     });

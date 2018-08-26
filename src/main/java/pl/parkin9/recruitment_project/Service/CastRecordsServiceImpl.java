@@ -22,7 +22,7 @@ public class CastRecordsServiceImpl implements CastRecordsService {
         for (Object rawRecord : rawRecordsList) {
             castedRecordsList.add((RecordFromTable) rawRecord);
         }
-        
+
         return castedRecordsList;
     }
 }

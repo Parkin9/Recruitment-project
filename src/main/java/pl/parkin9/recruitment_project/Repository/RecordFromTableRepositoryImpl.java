@@ -1,10 +1,8 @@
 package pl.parkin9.recruitment_project.Repository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import pl.parkin9.recruitment_project.Model.RecordFromTable;
-import pl.parkin9.recruitment_project.Service.CastRecordsService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,24 +17,16 @@ import java.util.List;
 * to keep Database safe from Trolls :).
 */
 
-@Component
 public class RecordFromTableRepositoryImpl implements RecordFromTableRepositoryCustom {
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    private CastRecordsService castRecordsService;
-
-    @Autowired
-    public RecordFromTableRepositoryImpl(CastRecordsService castRecordsService) {
-        this.castRecordsService = castRecordsService;
-    }
-
 /////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     @Transactional
-    public List<RecordFromTable> findAllRecordsWithDuplicatedValues(String columnName) {
+    public List findAllRecordsWithDuplicatedValues(String columnName) {
 
         String queryString = "SELECT * FROM tabela_testowa AS Field1 " +
                                 "WHERE EXISTS (SELECT COUNT(id) AS quantity FROM tabela_testowa AS Field2 " +
@@ -46,14 +36,12 @@ public class RecordFromTableRepositoryImpl implements RecordFromTableRepositoryC
 
         List rawRecordsList = query.getResultList();
 
-        List<RecordFromTable> castedRecordsList = castRecordsService.castRecords(rawRecordsList);
-
-        return castedRecordsList;
+        return rawRecordsList;
     }
 
     @Override
     @Transactional
-    public List<RecordFromTable> findAllRecordsWithSingledValues(String columnName) {
+    public List findAllRecordsWithSingledValues(String columnName) {
 
         String queryString = "SELECT * FROM tabela_testowa AS Field1 " +
                                 "WHERE EXISTS (SELECT COUNT(id) AS quantity FROM tabela_testowa AS Field2 " +
@@ -63,8 +51,6 @@ public class RecordFromTableRepositoryImpl implements RecordFromTableRepositoryC
 
         List rawRecordsList = query.getResultList();
 
-        List<RecordFromTable> castedRecordsList = castRecordsService.castRecords(rawRecordsList);
-
-        return castedRecordsList;
+        return rawRecordsList;
     }
 }

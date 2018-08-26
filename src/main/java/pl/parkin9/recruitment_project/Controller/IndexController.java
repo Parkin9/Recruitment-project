@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.parkin9.recruitment_project.Model.RecordFromTable;
 import pl.parkin9.recruitment_project.Repository.RecordFromTableRepository;
+import pl.parkin9.recruitment_project.Service.CastRecordsService;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +19,13 @@ import java.util.List;
 public class IndexController {
 
     private final RecordFromTableRepository recordFromTableRepository;
+    private CastRecordsService castRecordsService;
+
 
     @Autowired
-    public IndexController(RecordFromTableRepository recordFromTableRepository) {
+    public IndexController(RecordFromTableRepository recordFromTableRepository, CastRecordsService castRecordsService) {
         this.recordFromTableRepository = recordFromTableRepository;
+        this.castRecordsService = castRecordsService;
     }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -40,14 +43,18 @@ public class IndexController {
         // Parameter from Frontend (name of column)
         String columnName = request.getParameter("columnName");
 
-        // Getting 2 Lists of Records from Database
-        List<RecordFromTable> duplicatesList = recordFromTableRepository.findAllRecordsWithDuplicatedValues(columnName);
-        List<RecordFromTable> singlesList = recordFromTableRepository.findAllRecordsWithSingledValues(columnName);
+        // Getting 2 raw Lists of Records from Database
+        List duplicatesRawList = recordFromTableRepository.findAllRecordsWithDuplicatedValues(columnName);
+        List singlesRawList = recordFromTableRepository.findAllRecordsWithSingledValues(columnName);
+
+        // Casting raw Lists to RecordFromTable type
+        List<RecordFromTable> duplicatesCastList = castRecordsService.castRecords(duplicatesRawList);
+        List<RecordFromTable> singlesCastList = castRecordsService.castRecords(singlesRawList);
 
         // Preparing a List to send as response. It contains above Lists
         List<List<RecordFromTable>> recordsList = new ArrayList<>();
-        recordsList.add(duplicatesList);
-        recordsList.add(singlesList);
+        recordsList.add(duplicatesCastList);
+        recordsList.add(singlesCastList);
 
         return recordsList;
     }

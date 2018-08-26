@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
             dataType: 'json',
             success: function (recordsList) {
 
-                // console.log(recordsList);
+                //console.log(recordsList);
 
                 var duplicatesList = recordsList[0];
                 var singlesList = recordsList[1];
